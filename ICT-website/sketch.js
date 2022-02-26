@@ -18,11 +18,13 @@ function setup() {
 }
 
 function draw() {
-  background(220);
+  background(255);
   translate(width / 2, height / 2);
   angleMode(DEGREES);
   if(!started){
     angle = slider.value();
+    rotate(angle);
+    rect(-7/2, 0, 7, 42);
   }
   if(started){
     rotate(angle);
