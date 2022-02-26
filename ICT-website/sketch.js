@@ -23,6 +23,7 @@ function draw() {
   angleMode(DEGREES);
   if(!started){
     angle = slider.value();
+    lastAngle = angle;
     rotate(angle);
     rect(-7/2, 0, 7, 42);
   }
@@ -35,14 +36,18 @@ function draw() {
     if (angle < -180){
       angle = angle + 360;
     }
-    if (angle != 180 || angle != 0 && dropSpeed != 0){
-      if (angle < 0){
+    if (angle == 180 || angle == 0 && dropSpeed == 0){
+    }
+    else {
+      if (angle < 0 || lastAngle < -1){
+        lastAngle = angle;
         dropSpeed -= drop;
         dropSpeed += dropMinus;
         angle -= dropSpeed;
         angle += angleMinus;
       }
-      if (angle > 0){
+      if (angle > 0 || lastAngle > 1){
+        lastAngle = angle;
         dropSpeed += drop;
         dropSpeed -= dropMinus;
         angle -= dropSpeed;
